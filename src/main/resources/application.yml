@@ -1,0 +1,64 @@
+server:
+  port:8080
+
+spring:
+  profiles:
+    # 外置jdbc，redis配置文件
+    active: jdbc,redis
+  # 关闭thymeleaf页面缓存
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    content-type: text/html
+
+  # 配置国际化资源文件
+  messages:
+    basename: i18n.logo
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/tmall_springboot?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 初始连接数
+      initialSize: 5
+      # 最小连接池数量
+      minIdle: 10
+      # 最大连接池数量
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      #      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      #      timeBetweenEvictionRunsMillis: 60000
+      #      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      #      minEvictableIdleTimeMillis: 300000
+      #      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      #      maxEvictableIdleTimeMillis: 900000
+
+    #redis 配置
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password:
+    cache:
+      redis:
+        time-to-live: 50000
+
+# Mybatis-plus配置
+mybatis-plus:
+  #配置XML映射文件中指定的实体类别名称
+  type-aliases-package: com.pentac.tmall_springboot.entity
+  #配置MyBatis-plus的xml文件映射路径
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启驼峰命名命名匹配映射
+    map-underscore-to-camel-case: true
+
+
+#浏览器cookie相关设置
+COOKIE:
+  #设置cookie默认时长为30分钟
+  VALIDITY: 1800
+

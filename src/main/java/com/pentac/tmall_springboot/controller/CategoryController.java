@@ -1,9 +1,15 @@
 package com.pentac.tmall_springboot.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.pentac.tmall_springboot.entity.Category;
+import com.pentac.tmall_springboot.service.impl.CategoryServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,8 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021-08-16
  */
 @RestController
-@RequestMapping("/tmall_springboot/category")
+@Component
 public class CategoryController {
 
+    @Autowired
+    CategoryServiceImpl categoryServiceImpl;
+
+    @GetMapping("/categories")
+    public List<Category> list() throws Exception{
+        categoryServiceImpl.list().forEach(System.out::println);
+        return categoryServiceImpl.list();
+    }
 }
 

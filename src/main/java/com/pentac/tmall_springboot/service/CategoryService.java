@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author pentaC
  * @since 2021-08-16
  */
-public interface CATEGORYervice extends IService<Category> {
+public interface CategoryService extends IService<Category> {
 
 }
